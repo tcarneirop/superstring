@@ -10,10 +10,10 @@ const MAX_SUPERSTRING_LEN = MAX_READS * MAX_LEN
 mutable struct SolverState
     reads::Vector{String}
     num_reads::Int
-    num_subproblems_generated::UInt32 # Corresponds to unsigned int
+    num_subproblems_generated::UInt32 
     num_solutions::UInt64
     num_overlap_verifications::UInt64
-    best_len::UInt64 # Lengths are non-negative, so UInt64 is appropriate
+    best_len::UInt64
     best_result::String
 
     # Constructor
@@ -44,7 +44,7 @@ end
 function generate_initial_load_get_subproblems(solver_state::SolverState, current::String, used::Vector{Bool}, level::Int,
     cutoff_level::Int,pool_subproblems::Vector{Subproblem})
 
-    
+
     if level == cutoff_level
         push!(pool_subproblems, Subproblem(current, copy(used)))
         solver_state.num_subproblems_generated += 1
