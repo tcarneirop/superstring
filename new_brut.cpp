@@ -2,14 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_READS 20
+#define MAX_READS 10
 #define MAX_LEN 100
 #define MAX_SUPERSTRING_LEN (MAX_READS * MAX_LEN)
 
 char reads[MAX_READS][MAX_LEN];
-int num_reads = 0;
-unsigned long long num_solutions = 0ULL;
-unsigned long long num_overlap_verifications    = 0ULL;
+int num_reads;
 
 int compute_overlap(const char *a, const char *b) {
     int max = strlen(a) < strlen(b) ? strlen(a) : strlen(b);
@@ -59,7 +57,6 @@ void build_superstring(int overlap[MAX_READS][MAX_READS]) {
 
 void generate_permutations(int depth, int overlap[MAX_READS][MAX_READS]) {
     if (depth == num_reads) {
-        ++num_solutions;
         build_superstring(overlap);
         return;
     }
@@ -68,7 +65,6 @@ void generate_permutations(int depth, int overlap[MAX_READS][MAX_READS]) {
         if (!used[i]) {
             used[i] = 1;
             perm[depth] = i;
-            ++num_overlap_verifications;
             generate_permutations(depth + 1, overlap);
             used[i] = 0;
         }
@@ -95,9 +91,6 @@ int main(int argc, char *argv[]) {
         num_reads++;
     }
     fclose(fp);
-    
-    printf("\n############## String read OK ##############\n");
-    printf("\nNum reads: %d\n", num_reads);
 
     int overlap[MAX_READS][MAX_READS];
     build_overlap_matrix(overlap);
@@ -106,7 +99,5 @@ int main(int argc, char *argv[]) {
 
     printf("Shortest superstring: %s\n", best_superstring);
     printf("Shortest superstring length: %d\n", best_len);
-    printf("Number of stringcomp calls: %llu \n", num_overlap_verifications);
-    printf("Number of complete solutions found: %llu \n", num_solutions);
     return 0;
 }
