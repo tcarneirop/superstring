@@ -1,0 +1,10 @@
+
+############## Problem Read -- OK ##############
+
+Num reads: 13
+
+Cutoff depth: 3, Num subproblems: 1716
+Best superstring: ATCGCCCAGTGCCAGCCGAAAAATACCGAATTACCGGAAATCCTCAAGGGCATTACCCCCAGCACCAGGTTCCAATCTGATGAAGACGCTCATTGCCTGATTCCAGATCCC
+Length: 111
+Number of stringcomp calls: 10805311391 
+Number of complete solutions found: 13 

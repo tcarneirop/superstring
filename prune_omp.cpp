@@ -109,7 +109,8 @@ void solve_build_superstring(char *__restrict__ current, int *__restrict__ used,
     }
 }
 
-void solve_launch_parallel_search(Subproblems *__restrict__ pool_of_subproblems, const unsigned int num_subproblems, const int cutoff_level){
+void solve_launch_parallel_search(Subproblems *__restrict__ pool_of_subproblems, 
+    const unsigned int num_subproblems, const int cutoff_level){
 
     for(int sub = 0; sub<num_subproblems; ++sub){
         solve_build_superstring( pool_of_subproblems[sub].current, pool_of_subproblems[sub].used, cutoff_level, strlen(pool_of_subproblems[sub].current));
